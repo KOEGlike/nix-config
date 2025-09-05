@@ -28,6 +28,7 @@
     ../programs/telegram
     ../programs/tmux
     ../programs/zsh
+    ../programs/vscode
     ../scripts
     ../services/flatpak
   ];
@@ -72,6 +73,64 @@
       python3
       ripgrep
       terraform
+
+      rustup
+      rust-analyzer
+      clippy
+      cargo
+      sqlx-cli
+      cargo-leptos
+      leptosfmt
+      cargo-generate
+
+      temurin-bin-21
+
+      tailwindcss_4
+      dart-sass
+
+      openssl
+      openssl.dev
+
+      pkg-config
+
+      gcc
+      clang
+
+      ldproxy
+
+      config.boot.kernelPackages.xone
+      prismlauncher
+
+      kikit
+      (kicad.override {
+        addons = [
+          pkgs.kicadAddons.kikit
+          pkgs.kicadAddons.kikit-library
+        ];
+      })
+      kikit
+      freecad
+
+      prusa-slicer
+
+      discord
+      slack
+      signal-desktop
+
+      figma-linux
+
+      (blender.override { cudaSupport = true; })
+
+      qdirstat
+
+      davinci-resolve
+      gimp3
+
+      brave
+      firefox
+
+      libreoffice-qt
+
     ]
     ++ lib.optionals stdenv.isDarwin [
       colima
@@ -84,6 +143,8 @@
       tesseract
       unzip
       wl-clipboard
+      appimage-run
+      lutris
     ];
 
   # Catpuccin flavor and accent

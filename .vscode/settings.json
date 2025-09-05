@@ -1,7 +1,5 @@
 {
-  "cSpell.words": [
-    "catppuccin"
-  ],
+  "cSpell.enabled": false,
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nil", // or "nixd"
   // LSP config can be passed via the ``nix.serverSettings.{lsp}`` as shown below.

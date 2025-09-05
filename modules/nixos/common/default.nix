@@ -161,6 +161,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
+    cnijfilter_4_00
     gcc
     glib
     gnumake
