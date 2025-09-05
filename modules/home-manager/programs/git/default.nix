@@ -8,6 +8,7 @@
     signing = {
       key = userConfig.gitKey;
       signByDefault = true;
+      format = "ssh";
     };
     delta = {
       enable = true;

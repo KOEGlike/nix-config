@@ -22,7 +22,7 @@
 
     # Declarative kde plasma manager
     plasma-manager = {
-      url = "github:AlexNabokikh/plasma-manager";
+      url = "github:Alexkoeg/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -48,19 +48,12 @@
 
       # Define user configurations
       users = {
-        "alexander.nabokikh" = {
+        koeg = {
           avatar = ./files/avatar/face;
-          email = "alexander.nabokikh@olx.pl";
-          fullName = "Alexander Nabokikh";
-          gitKey = "C5810093";
-          name = "alexander.nabokikh";
-        };
-        nabokikh = {
-          avatar = ./files/avatar/face;
-          email = "alexander.nabokikh@olx.pl";
-          fullName = "Alexander Nabokikh";
-          gitKey = "C5810093";
-          name = "nabokikh";
+          email = "koeglike@proton.me";
+          fullName = "Balazs Marcell";
+          gitKey = "~/.ssh/id_ed25519.pub";
+          name = "koeg";
         };
       };
 
@@ -107,18 +100,11 @@
     in
     {
       nixosConfigurations = {
-        energy = mkNixosConfiguration "energy" "nabokikh";
-      };
-
-      darwinConfigurations = {
-        "PL-OLX-KCGXHGK3PY" = mkDarwinConfiguration "PL-OLX-KCGXHGK3PY" "alexander.nabokikh";
+        koeg-station = mkNixosConfiguration "koeg-station" "koeg";
       };
 
       homeConfigurations = {
-        "alexander.nabokikh@PL-OLX-KCGXHGK3PY" =
-          mkHomeConfiguration "aarch64-darwin" "alexander.nabokikh"
-            "PL-OLX-KCGXHGK3PY";
-        "nabokikh@energy" = mkHomeConfiguration "x86_64-linux" "nabokikh" "energy";
+        "koeg@koeg-station" = mkHomeConfiguration "x86_64-linux" "koeg" "koeg-station";
       };
 
       overlays = import ./overlays { inherit inputs; };

@@ -62,6 +62,7 @@
 
   # Networking
   networking.networkmanager.enable = true;
+  networking.interfaces.enp6s0.wakeOnLan.enable = true;
 
   # Disable systemd services that are affecting the boot time
   systemd.services = {
@@ -69,27 +70,22 @@
     plymouth-quit-wait.enable = false;
   };
 
-  # Timezone
-  time.timeZone = "Europe/Warsaw";
+  # Set your time zone.
+  time.timeZone = "Europe/Bucharest";
 
-  # Internationalization
+  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_IE.UTF-8";
-    LC_IDENTIFICATION = "en_IE.UTF-8";
-    LC_MEASUREMENT = "en_IE.UTF-8";
-    LC_MONETARY = "en_IE.UTF-8";
-    LC_NAME = "en_IE.UTF-8";
-    LC_NUMERIC = "en_IE.UTF-8";
-    LC_PAPER = "en_IE.UTF-8";
-    LC_TELEPHONE = "en_IE.UTF-8";
-    LC_TIME = "en_IE.UTF-8";
-  };
 
-  # Enables support for Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "ro_RO.UTF-8";
+    LC_IDENTIFICATION = "ro_RO.UTF-8";
+    LC_MEASUREMENT = "ro_RO.UTF-8";
+    LC_MONETARY = "ro_RO.UTF-8";
+    LC_NAME = "ro_RO.UTF-8";
+    LC_NUMERIC = "ro_RO.UTF-8";
+    LC_PAPER = "ro_RO.UTF-8";
+    LC_TELEPHONE = "ro_RO.UTF-8";
+    LC_TIME = "ro_RO.UTF-8";
   };
 
   # Input settings
@@ -193,6 +189,26 @@
   # Additional services
   services.locate.enable = true;
 
-  # OpenSSH daemon
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
+      UseDns = true;
+      X11Forwarding = false;
+      PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
+    };
+  };
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  networking.firewall.enable = false;
+
+  # Enable remote desktop access via xrdp.
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.openFirewall = true;
 }
